@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5dc396147b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>ToBoList</title>
+</head>
+<body>
+    
+    <div id="app">
+        <section id="header">
+
+            <div id="adding">
+                <input v-model='newTask' type="text" @KeyUp.enter="addTask">
+                <button @click="addTask">Aggiungi attivit&agrave;</button>
+                <div v-show="error" class="error">Attenzione ad inserire un task di almeno 5 parole</div>
+
+            </div>
+            
+
+        </section>
+        <section id="lista">
+            
+            <ul v-if="tasks.length > 0">
+                <li v-for="(element, index) in tasks" class="singular_task">
+                    <span v-show="element.done" class="done"><strong>&check;</strong></span>
+
+                    {{element.task}}
+                    
+                    <div class="toDo" :id="index">
+                        <button @click="segnoFatto(index)">Fatto</button>
+                    </div>                  
+
+
+                    <i class="fa-sharp fa-solid fa-xmark" @click="delTask(index)"></i>
+                </li>
+            </ul>
+            <h1 v-else>Hai fatto tutto? Ultimo compito per te: il DIVANO!</h1>
+        </section>
+    </div>
+
+
+
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
